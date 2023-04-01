@@ -47,8 +47,12 @@ window.onload = function() {
 
 function exit() {
 	showPersistentPopup('Você tem certeza que deseja sair?', ['Sim (!)', "Não"], ev => {
-		if (ev.index < 1)
-			window.close()
+		console.log(ev)
+		
+		if (ev.index === 0) {
+			//window.close()
+			showPersistentPopup('Desculpa, essa ação requer permissão root:)', ['Blz, vou continuar então!'], function(ev){})
+		}
 	})
 }
 
@@ -119,7 +123,7 @@ function showPersistentPopup(message, options, callback) {
 	const popupBody = document.createElement('div')
 	const popupFooter = document.createElement('div')
 	
-	fade.className="flex justify-center items-center fixed w-full h-full"
+	fade.className="flex justify-center items-center fixed w-full h-full z-10"
 	
 	popup.className="flex p-1 flex-col overflow-hidden absolute min-w-[5%] h-[100px] bg-white rounded-md text-black shadow-lg animate-[fade-in_ease_1s]"
 
